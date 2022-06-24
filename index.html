@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discografías</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="row__logoCarrito">
+            <div class="container header__logoCarrito">
+                <a href="index.html">
+                    <img src="img/logo2.png" alt="icono logo" class="header__logo">
+                </a>
+                
+                <h1 class="header__title">Discografías</h1>
+
+                <a href="carrito.html" class="header__carrito__container">
+                    <img src="img/carrito.svg" alt="icono carrito" class="header__carrito">
+                    <p class="carrito__number" id="carrito__number"></p>
+                </a>
+            </div>
+        </div>
+    </header>
+
+   
+    <main class="container main" id="main">
+        <div class="row__filter" id="row__filter">
+            <p class="filter__title">Filtrar</p>
+            <div class="filter__icon__container">
+                <img src="img/filtro.svg" alt="filter icon" class="filter__icon active" id="filter__icon">
+                <img src="img/cancel.svg" alt="cancel icon" class="filter__icon " id="filter__icon">
+            </div>
+        </div>
+        <div class="modal" id="modal"></div> <!-- Ocultar el fondo al abrir modal-->
+        <div class="row__content">
+            <section class="mensajes__filtros">
+                <p class="mensajes__filtros__titulo">Filtros:</p>
+                <p class="mensajes__filtros__cantidad" id="mensajes__filtros__cantidad"></p>
+                <p class="mensajes__filtros__historial" id="mensajes__filtros__historial"></p>
+            </section>
+
+            <aside class="menu__filter" id="menu__filter">
+                <div class="menu__filter__row">
+
+                    <div class="row__select active">
+                        <p class="select__title active" data-title="artista">Artista <i class="fa-solid fa-chevron-up"></i></p>
+                        <div class="select__lista">
+                            <p class="nombre__lista__option nombre__lista__option__artista nombre__lista__option-ninguno">Ninguno</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Shé</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Ambkor</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Nach</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Santa RM</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Akil Ammar</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">ZPU</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Natos y Waor</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Emanero</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Canserbero</p>
+                            <p class="nombre__lista__option nombre__lista__option__artista">Eminem</p>
+                        </div>
+                    </div>
+
+                    <div class="row__select">
+                        <p class="select__title" data-title="fecha">Fecha <i class="fa-solid fa-chevron-up"></i></p>
+                        <div class="select__lista">
+                            <p class="nombre__lista__option nombre__lista__option__fecha nombre__lista__option-ninguno">Ninguno</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2000</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2008</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2010</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2012</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2013</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2014</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2016</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2017</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2018</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2021</p>
+                            <p class="nombre__lista__option nombre__lista__option__fecha">2022</p>
+                        </div>
+                    </div>
+
+                    <div class="row__select">
+                        <p class="select__title" data-title="pais">País <i class="fa-solid fa-chevron-up"></i></p>
+                        <div class="select__lista">
+                            <p class="nombre__lista__option nombre__lista__option__pais nombre__lista__option-ninguno">Ninguno</p>
+                            <p class="nombre__lista__option nombre__lista__option__pais">Argentina</p>
+                            <p class="nombre__lista__option nombre__lista__option__pais">España</p>
+                            <p class="nombre__lista__option nombre__lista__option__pais">Estados Unidos</p>
+                            <p class="nombre__lista__option nombre__lista__option__pais">México</p>
+                            <p class="nombre__lista__option nombre__lista__option__pais">Venezuela</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn__enviar__filter" id="btn__enviar__filter">Guardar</button>
+                </div>
+            </aside>
+
+            <section class="row__albums" id="row__albums">
+                
+            </section>
+        </div>
+    </main>
+
+    <footer class="container" style="margin-top: 1rem; text-align: center; padding: 2rem 0;">
+        <p >Todos los derechos son reservados por &copy;Music.</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/7dd14a9268.js" crossorigin="anonymous"></script>
+    <script src="js/db_albums.js"></script>
+    <script src="js/appPrincipal.js"></script>
+</body>
+</html>

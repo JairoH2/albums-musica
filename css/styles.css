@@ -1,0 +1,677 @@
+/*Variables*/
+:root{
+    --fuentePrincipal: 'Montserrat', sans-serif;
+    --backgroundPrincipal: rgb(245, 245, 245);
+    --backgroundGradient: linear-gradient(90deg, rgba(232,117,183,1) 0%, rgba(57,139,166,1) 100%);
+    --rosa: rgba(232,117,183,1);
+    --blue: rgba(57,139,166,1);
+    --white: #fff;
+    --black: #000;
+    --gris: rgb(241, 241, 241);
+}
+
+/*reset properties*/
+html{
+    font-size: 62.5%; /*Each rem = 10px*/
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*, *::after, *::before{
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: var(--fuentePrincipal);
+    background: var(--backgroundPrincipal);
+    line-height: 1.5;
+    font-size: 1.8rem;
+    height: 100%;
+}
+
+/*Globales Styles*/
+.container{
+    max-width: 120rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+p{
+    font-weight: 600;
+}
+
+
+
+/*:::::: Header :::::::*/
+
+.header{
+    background-color: rgb(14, 14, 14);
+    /* position: relative;
+    z-index: 1; */ /*Sirve para al activar el modal mandar delante el header*/
+}
+
+.row__logoCarrito{
+    margin-bottom: 2rem;
+    box-shadow: 0px -1px 52px -10px rgb(22, 22, 22);
+}
+
+.header__logoCarrito{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+}
+
+.header__logo{
+    width: 4.5rem;
+    display: block;
+}
+
+.header__title{
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 1rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.header__carrito__container{
+    position: relative; /*Hacer que el numero sea relativo a este elemento*/
+}
+
+.header__carrito{
+    width: 3.8rem;
+    display: block;
+}
+
+.carrito__number{
+    position: absolute;
+    top: 68%; /*Centrar Número*/
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(57,139,166,1);
+    font-weight: 400;
+}
+
+
+/*:::::: Main - Inicio :::::::*/
+
+/*Posicionamos titulo e icono*/
+.row__filter{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 1rem 0.5rem 1rem;
+}
+
+.row__filter.active{
+    position: relative;
+    z-index: 2;
+    filter: invert(1);
+}
+
+.filter__title{
+    margin-right: 0.5rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/*Hack para aplicat animcación de opacity*/
+.filter__icon__container{
+    position: relative;
+    width: 3rem; /*Hacemos que el tamaño del icono sea relativo a la medida de su elemento padre y al mismo tiempo reservamos el espacio del icono puesto que al no tener elementos que ocupen un espacio definido dentro, su with se deifine como 0, provoca que el icono se encime con el titulo*/
+}
+
+.filter__icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.filter__icon.active{
+    opacity: 1;
+    transition: all 0.8s ease;
+}
+
+/*Menú de Filtros*/
+.row__content{
+    position: relative;
+}
+
+.menu__filter{
+    position: absolute;
+    background-color: rgb(19, 19, 19);
+    width: 100%;
+    border-radius: 1rem;
+    top:0;
+    left: 0;
+    max-height: 0; 
+    overflow: hidden; /*Ocultar contenido respecto a tamaño de height*/
+    transition: max-height .3s ease-in-out;
+    z-index: 1;
+}
+
+.menu__filter.active{
+    max-height: 100vh; /*Al hacer click en filtrar se agrega tamaño*/
+}
+
+.menu__filter__row{
+    padding: 2rem;
+}
+
+.row__select{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.select__title{
+    color: var(--white);
+    position: relative;
+}
+
+.select__title i{
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.select__title.active i{
+    transform: rotate(0deg);
+}
+
+.select__lista{ /*Reduciomos la altura a 0 y ocultamos contenido fuera del contenedor*/
+    background-color: rgb(230, 230, 230);
+    border-radius: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease-in-out, padding .3s ease-in-out;
+}
+
+.nombre__lista__option{
+    margin: 0rem 2rem;
+    font-weight: 400;
+    padding: 0.2rem 1rem;
+}
+.nombre__lista__option.active{
+    background: var(--backgroundGradient);
+    border-radius: 1.4rem;
+}
+
+.row__select.active .select__lista{
+    max-height: 100vh; /*Si row select tiene active, entonces mostramos contenido interno de la lista*/
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+}
+
+.btn__enviar__filter,
+.btn__agregar__carrito{
+    display: block;
+    width: 70%;
+    margin: 1rem auto;
+    padding: 0.6rem 0.5rem;
+    border: none;
+    border-radius: 1rem;
+    color: var(--white);
+    font-weight: 600;
+    background: var(--backgroundGradient);
+}
+
+.btn__enviar__filter{
+    width: 60%;
+}
+
+/*Modal*/
+.modal{
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.modal.active{
+    height: 120%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.7);
+    position: fixed; /*Mantiene su posicion aunque el fondo se desplace, tambien los elementos que son declarados delante del elemento mantienen su posicion jerarquica y se siguen visualizando*/
+    z-index: 1;
+}
+
+/*Cards de los discos*/
+.row__albums{
+    padding: 3rem 0 1rem 0;
+    position: relative;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+.album{
+    box-shadow: 0px -1px 52px -10px rgba(224,224,224,1);
+    margin: 1rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+    padding: 2rem 0 1rem 0;
+}
+.album__imagen{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 1rem;
+}
+
+.album__container__info{
+    width: 80%;
+    margin:  1rem auto 0 auto;
+}
+
+.album__titulo{
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.album__info__artista{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.album__info__artista div{
+    display: flex;
+    align-items: center;
+}
+
+.album__artista__pais{
+    display: block;
+    width: 3rem;
+    margin-left: 1rem;
+    border-radius: 0.2rem;
+}
+
+.album__info__year{
+    font-weight: 400;
+}
+
+.btn__agregar__carrito{
+    cursor: pointer;
+}
+
+/*Mensaje de ninguna coincidencia*/
+.no__coincidencias{
+    width: auto;
+}
+
+/*Ocultar Historial y titulo*/
+.mensajes__filtros{
+    display: none;
+}
+
+/*Media Querys del main*/
+@media screen and (min-width: 480px){
+
+    .header__logo{
+        width: 5rem;
+    }
+
+    .header__title{
+        font-size: 2.4rem;
+    }
+
+    .header__logoCarrito{
+        padding: 0.8rem 1rem;
+    }
+
+    .row__albums{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .no__coincidencias{
+        width: max-content;
+    }
+}
+
+
+@media screen and (min-width: 768px){
+    .header__title{
+        font-size: 2.6rem;
+    }
+
+    .row__albums{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media screen and (min-width: 992px){
+
+    .header__title{
+        font-size: 3rem;
+    }
+
+    /*Ocultar iconos de filtrar*/
+    .row__filter{
+        display: none;
+    }
+
+    /*Ocultar la ventana modal*/
+    .modal{
+        display: none;
+    }
+
+    /*Posicionar menu de filtrar y albums*/
+    .row__content{
+        display: grid;
+        grid-template-columns: 20% 80%;
+    }
+
+    /*Definir historial de filtros y titulo*/
+    .mensajes__filtros{
+        grid-column: 1/3;
+        display: flex;
+    }
+
+    .mensajes__filtros__titulo{
+        width: 20%;
+    }
+
+    .mensajes__filtros__historial{
+        margin-left: 1rem;
+        font-weight: 400;
+    }
+
+    /*Posicionar el menú de filtros*/
+    .menu__filter{
+        max-height: 100%;
+        position: static;
+        background-color: transparent;
+    }
+
+    .menu__filter__row{
+        padding: 1.2rem 2rem 2rem 0;
+    }
+
+    .select__title{
+        color: var(--black);
+        font-size: 1.7rem;
+        cursor: pointer;
+    }
+
+    .nombre__lista__option{
+        cursor: pointer;
+        border-radius: 1.4rem;
+        margin: 0rem 2rem;
+        padding: 0 1rem;
+        font-size: 1.6rem;
+        position: relative;
+    }
+
+    .nombre__lista__option:hover::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 10px;
+        top: 10px;
+        left: 3px;
+        display: block;
+        position: absolute;
+        background: var(--rosa);
+    }
+
+    /*Definimos medidas y que el heigth se adapte al contenido*/
+    .row__albums{
+        padding: 1rem 0 2rem 0 ;
+        height: fit-content ;
+    }
+
+    /*Ocultar opcion de filtrar por boton*/
+    .btn__enviar__filter{
+        display: none;
+    }
+
+    /*Opcion de seleccionar ninguno*/
+    .nombre__lista__option-ninguno{
+        font-weight: 700;
+    }
+}
+
+
+/*:::::: Main - Carrito :::::::*/
+.main__carrito{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    margin-top: 4rem;
+}
+
+/*Seción de compras*/
+
+.row__compras{
+    margin-bottom: 4rem;
+}
+
+.row__compra{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.row__compra__img{
+    max-width: 25rem;
+    width: 100%;
+    display: block;
+    margin: 0 auto 2rem auto;
+    border-radius: 1rem;
+}
+
+.compra__info{
+    max-width: 50rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.compra__info > *{
+    /* margin: 0 0.5rem; */
+    margin: 0 0 0.2rem 0;
+}
+
+.compra__info p:nth-child(2){
+    font-weight: 400;
+}
+
+.compra__info__cantidad{
+    display: flex;
+    align-items: center;
+}
+
+.compra__info__cantidad p{
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 1rem;
+    background-color: rgb(219, 219, 219);
+}
+
+.btn__compra__left,
+.btn__compra__right{
+    height: 3rem;
+    width: 3.5rem;
+    background: var(--backgroundGradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--white);
+}
+
+.btn__compra__left{
+    border-top-left-radius: 0.7rem;
+    border-bottom-left-radius: 0.7rem;
+}
+
+.btn__compra__right{
+    border-top-right-radius: 0.7rem;
+    border-bottom-right-radius: 0.7rem;
+}
+
+.btn__eliminar__carrito{
+    width: 100%;
+    padding: 0.6rem 2rem;
+    border: 1px dashed var(--black);
+    border-radius: 0.7rem;
+    background: rgb(219, 219, 219);
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: var(--black);
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.fa-regular.fa-trash-can{
+    display: none;
+}
+
+
+/*Seción de envíos*/
+.row__envioGratis{
+    display: flex;
+    border: 1px dashed var(--black);
+    background-color: var(--white);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    line-height: 1.2;
+}
+
+.envioGratis__img .fa-solid{
+    font-size: 3.5rem;
+    margin-right: 1rem;
+}
+
+.row__envioResumen{
+    background: rgb(14, 14, 14);
+    border: none;
+    color: var(--white);
+    padding: 2rem 3rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.envioResumen__titulo{
+    border-bottom: 0.1rem solid rgb(56, 56, 56);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+.envioResumen__pagos,
+.envioResumen__total{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 0.1rem solid rgb(32, 32, 32);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+.envioResumen__pagos p:nth-child(2),
+.envioResumen__pagos p:nth-child(4),
+.envioResumen__total p:nth-child(2){
+    text-align: right;
+    font-weight: 400;
+}
+
+.envioResumen__total{
+    line-height: 1.2;
+    border: 0;
+}
+
+.envioResumen__total p:nth-child(3){
+    grid-column: 1/3;
+    text-align: right;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.6rem;
+}
+
+.btn__seguirComprando{
+    border: 1px dashed var(--black);
+    background: var(--white);
+    font-weight: 400;
+    color: var(--black);
+    text-align: center;
+}
+
+.btn__seguirComprando span{
+    margin-left: 0.5rem;
+}
+
+/*:::::::::: Breakpoints -> main - Carrito*/
+
+@media screen and (min-width: 480px){
+    .compra__info p:first-child{
+        width: 12rem;
+    }
+
+    .compra__info{
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    .btn__eliminar__carrito{
+        display: none;
+    }
+
+    .fa-regular.fa-trash-can{
+        display: inline-block;
+        color: var(--rosa);
+        font-size: 2.5rem;
+        cursor: pointer;
+    }
+
+    .row__compra{
+        flex-direction: row;
+        margin-right: 0;
+        padding: 1.5rem 3rem 1.5rem 1.5rem; 
+    }
+
+    .compra__info{
+        max-width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .row__compra__img{
+        width: 8rem;
+        margin: auto 0;
+        margin-right: 2rem; 
+    } 
+
+    .compra__info p:first-child{
+        width: 18rem;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .main__carrito{
+        grid-template-columns: 2fr 1fr;
+    }
+    
+    .row__compras{
+        margin-right: 5rem;
+        margin-bottom: 0;
+    }  
+}
