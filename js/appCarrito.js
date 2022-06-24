@@ -206,7 +206,7 @@ function limpiarHTML(){
 }
 
 
-//Cargar event Listeners dependientes
+//Cargar event Listeners dependientes s
 function eventListenersDependientes(){
         //Una vez obtenidos que los elementos existen en el dom se agregan los event listeners
         const btnProductLeft = document.querySelectorAll('.btn__compra__left');
